@@ -64,7 +64,7 @@ combined_model = CombinedModel(cnn_model, gcn_model).to(device)
 #optimizer = AdamW(combined_model.parameters(), lr=0.001, weight_decay=5e-4)
 #optimizer = torch.optim.SGD(combined_model.parameters(), lr=0.001, momentum=0.9)
 #optimizer = torch.optim.Adagrad(combined_model.parameters(), lr=0.001)
-optimizer = torch.optim.RMSprop(combined_model.parameters(), lr=0.001)
+optimizer = torch.optim.RMSprop(combined_model.parameters(), lr=0.001)#因为结果不理想，所以找了多组优化器看看哪个最好
 
 # 训练模型
 combined_model.train()
