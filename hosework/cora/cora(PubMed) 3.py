@@ -64,7 +64,10 @@ combined_model = CombinedModel(cnn_model, gcn_model).to(device)
 #optimizer = AdamW(combined_model.parameters(), lr=0.001, weight_decay=5e-4)
 #optimizer = torch.optim.SGD(combined_model.parameters(), lr=0.001, momentum=0.9)
 #optimizer = torch.optim.Adagrad(combined_model.parameters(), lr=0.001)
-optimizer = torch.optim.RMSprop(combined_model.parameters(), lr=0.001)#因为结果不理想，所以找了多组优化器看看哪个最好
+optimizer = torch.optim.RMSprop(combined_model.parameters(), lr=0.001)
+#因为结果不理想，所以找了多组优化器看看哪个最好
+#目前结果是在100Epoch后，RMSprop最佳，loss值下降较快，其次是SGD但是loss较高，其他的估计在一万次之后只能维持在百分之50多的正确率
+#而RMS 100次便可达到百分之40多，SGD为30多，后续还没测试
 
 # 训练模型
 combined_model.train()
