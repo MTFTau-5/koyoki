@@ -6,6 +6,7 @@ import torch.nn.functional as F
 from torch_geometric.nn import GCNConv
 from torch_geometric.datasets import Planetoid
 from torch_geometric.transforms import NormalizeFeatures
+from torch.optim import AdamW
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -58,7 +59,8 @@ class CombinedModel(nn.Module):
         return F.log_softmax(x, dim=1)
 
 combined_model = CombinedModel(cnn_model, gcn_model).to(device)
-optimizer = torch.optim.Adam(combined_model.parameters(), lr=0.001, weight_decay=5e-4)  
+#optimizer = torch.optim.Adam(combined_model.parameters(), lr=0.001, weight_decay=5e-4)  
+optimizer = AdamW(combined_model.parameters(), lr=0.001, weight_decay=5e-4)
 
 # 训练模型
 combined_model.train()
