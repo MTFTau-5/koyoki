@@ -23,6 +23,7 @@ class CNNforCora(nn.Module):
         x = x.unsqueeze(1)
         x = F.relu(self.conv1(x))
         x = F.relu(self.conv2(x))
+#        x = self.dropout(x)
         x = F.max_pool1d(x, kernel_size=x.size(2)).squeeze(2)
         return x
 
@@ -34,6 +35,7 @@ class GCN(nn.Module):
 
     def forward(self, x, edge_index):
         x = F.relu(self.conv1(x, edge_index))
+#        x = self.dropout(x)
         x = self.conv2(x, edge_index)
         return x
 
