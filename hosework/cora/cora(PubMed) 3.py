@@ -1,3 +1,5 @@
+#这个模型是ai缝的，效果并不好，，我昨晚看了一个cnn+gcn的论文有感（但是碍于实力只能ai救一下了）
+#经过测试，cnn+gcn对于复杂数据的处理能力更强（比较cora与pubmed）
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
