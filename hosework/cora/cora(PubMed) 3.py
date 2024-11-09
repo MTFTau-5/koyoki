@@ -50,8 +50,9 @@ gcn_model = GCN(hidden_dim, hidden_dim, output_dim).to(device)
 class CombinedModel(nn.Module):
     def __init__(self, cnn_model, gcn_model):
         super(CombinedModel, self).__init__()
-        self.cnn_model = cnn_model
+        #self.cnn_model = cnn_model
         self.gcn_model = gcn_model
+        self.cnn_model = cnn_model
 
     def forward(self, x, edge_index):
         x = self.cnn_model(x)
@@ -60,7 +61,10 @@ class CombinedModel(nn.Module):
 
 combined_model = CombinedModel(cnn_model, gcn_model).to(device)
 #optimizer = torch.optim.Adam(combined_model.parameters(), lr=0.001, weight_decay=5e-4)  
-optimizer = AdamW(combined_model.parameters(), lr=0.001, weight_decay=5e-4)
+#optimizer = AdamW(combined_model.parameters(), lr=0.001, weight_decay=5e-4)
+#optimizer = torch.optim.SGD(combined_model.parameters(), lr=0.001, momentum=0.9)
+#optimizer = torch.optim.Adagrad(combined_model.parameters(), lr=0.001)
+optimizer = torch.optim.RMSprop(combined_model.parameters(), lr=0.001)
 
 # 训练模型
 combined_model.train()
