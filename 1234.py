@@ -43,11 +43,11 @@ class AudioDataset(Dataset):
 
 
 class EmbeddingModel(nn.Module):
-    def __init__(self, num_devices):
-        super(EmbeddingModel, self).__init__()
+    def __init__(self,num_devices):
+        super(EmbeddingModel,self).__init__()
         self.device_num = nn.Embedding(num_devices, 11)
 
-    def forward(self, device_num_tensor):
+    def forward(self,device_num_tensor):
         
         device_num_embedding = self.device_num(device_num_tensor)
         return device_num_embedding
